@@ -2,4 +2,6 @@
 
 <%= render 'form', floorplan: @floorplan %>
 
-<%= link_to 'Back', project_floorplans_path(@project) %>
+<div class="row">
+  <%= link_to 'Back', user_projects_path(current_user) %>
+</div>

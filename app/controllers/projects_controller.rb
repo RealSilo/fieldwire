@@ -29,9 +29,4 @@ class ProjectsController < ApplicationController
   def project_params
     params.require(:project).permit(:name)
   end
-
-  def set_and_authorize_profile
-    @profile = @user.profile
-    authorize @profile
-  end
 end
