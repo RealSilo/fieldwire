@@ -20,6 +20,8 @@ gem 'shrine', '~> 2.6', '>= 2.6.1'
 gem 'aws-sdk', '~> 2.9', '>= 2.9.38'
 gem 'roda', '~> 2.26'
 gem 'jquery-fileupload-rails', '~> 0.4.7'
+gem 'image_processing', '~> 0.4.1'
+gem 'mini_magick', '~> 4.7'
 
 gem 'devise', '~> 4.3'
 gem 'pundit', '~> 1.1'

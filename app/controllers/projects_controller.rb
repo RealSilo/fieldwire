@@ -21,6 +21,7 @@ class ProjectsController < ApplicationController
   def show
     @project = Project.find(params[:id])
     authorize @project
+    @floorplans = @project.floorplans
   end
 
   private

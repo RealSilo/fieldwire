@@ -1,1 +1,14 @@
 <%= @project.name %>
+
+<%= link_to 'New Floorplan', new_project_floorplan_path(@project) %>
+
+<% @floorplans.each do |floorplan| %>
+  <% if (floorplan.image.respond_to?(:metadata) && floorplan.image.metadata['mime_type'] == "application/pdf") %>
+    <%= link_to "#{floorplan.image.data['metadata']['filename']}", floorplan.image.url  %>
+  <% else %>
+    <%= floorplan.display_name || without_extension(floorplan.image[:original].data['metadata']['filename']) %>
+    <%= link_to floorplan.image[:original].url, target: :_blank do %>
+      <%= image_tag floorplan.image[:medium].url %>
+    <% end %>
+  <% end %>
+<% end %>
