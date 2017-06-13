@@ -4,15 +4,14 @@ class ApplicationController < ActionController::Base
   include Pundit
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
-  def after_sign_in_path_for(resource)
+  def after_sign_in_path_for(_resource)
     user_projects_path(current_user)
   end
 
   private
 
-  def user_not_authorized(exception)
-    policy_name = exception.policy.class.to_s.underscore
-    flash[:danger] = t "#{policy_name}.#{exception.query}", scope: "pundit", default: :default
+  def user_not_authorized(_exception)
+    flash[:danger] = 'Not authorized'
     redirect_to(request.referrer || root_path)
   end
 end

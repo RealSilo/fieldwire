@@ -21,16 +21,18 @@ Metrics/MethodLength:
   Max: 20
 Style/AsciiComments:
   Enabled: false
+Style/VariableNumber:
+  Enabled: false
 Style/NumericPredicate:
   EnforcedStyle: comparison
 Style/PredicateName:
   Enabled: false
-Style/MultilineMethodCallIndentation:
+Layout/MultilineMethodCallIndentation:
   EnforcedStyle: aligned
   Enabled: false
-Style/SpaceAroundOperators:
+Layout/SpaceAroundOperators:
   Enabled: false
-Style/ExtraSpacing:
+Layout/ExtraSpacing:
   Enabled: false
 Style/FrozenStringLiteralComment:
   Enabled: false

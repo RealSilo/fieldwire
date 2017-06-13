@@ -1,64 +1,36 @@
 class FloorplansController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_project
-  before_action :set_floorplan, only: [:show, :edit, :update, :destroy]
+  before_action :set_floorplan, only: %i[show edit update]
 
-  # GET /floorplans
-  # GET /floorplans.json
   def index
     @projects = @project.floorplans.all
   end
 
-  # GET /floorplans/1
-  # GET /floorplans/1.json
-  def show
-  end
+  def show; end
 
-  # GET /floorplans/new
   def new
     @floorplan = Floorplan.new
+    authorize @project, :new_floorplan?
   end
 
-  # GET /floorplans/1/edit
-  def edit
-  end
-
-  # POST /floorplans
-  # POST /floorplans.json
   def create
     @floorplan = @project.floorplans.new(floorplan_params)
 
-    respond_to do |format|
-      if @floorplan.save
-        format.html { redirect_to user_project_path(current_user, @project), notice: 'floorplan was successfully created.' }
-        format.json { render :show, status: :created, location: [@project, @floorplan] }
-      else
-        format.html { render :new }
-        format.json { render json: @floorplan.errors, status: :unprocessable_entity }
-      end
+    if @floorplan.save
+      redirect_to user_project_path(current_user, @project), notice: 'Floorplan successfully created.'
+    else
+      render :new
     end
   end
 
-  # PATCH/PUT /floorplans/1
-  # PATCH/PUT /floorplans/1.json
+  def edit; end
+
   def update
-    respond_to do |format|
-      if @floorplan.update(floorplan_params)
-        format.html { redirect_to @floorplan, notice: 'Floorplan was successfully updated.' }
-        format.json { render :show, status: :ok, location: [@project, @floorplan] }
-      else
-        format.html { render :edit }
-        format.json { render json: @floorplan.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # DELETE /floorplans/1
-  # DELETE /floorplans/1.json
-  def destroy
-    @floorplan.destroy
-    respond_to do |format|
-      format.html { redirect_to floorplans_url, notice: 'Floorplan was successfully destroyed.' }
-      format.json { head :no_content }
+    if @floorplan.update(floorplan_params)
+      redirect_to @floorplan, notice: 'Floorplan was successfully updated.'
+    else
+      render :edit
     end
   end
 
@@ -66,6 +38,7 @@ class FloorplansController < ApplicationController
 
   def set_floorplan
     @floorplan = @project.floorplans.find(params[:id])
+    authorize @floorplan
   end
 
   def floorplan_params
