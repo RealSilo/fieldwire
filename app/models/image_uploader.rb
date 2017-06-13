@@ -1,16 +1,16 @@
 require "image_processing/mini_magick"
 
 class ImageUploader < Shrine
-  # plugin :validator_helpers
+  plugin :validation_helpers
   include ImageProcessing::MiniMagick
   include ImageUploader[:image]
   plugin :processing
   plugin :versions
 
-  # Attacher.validate do
-  #   validate_max_size 5*1024*1024, message: "is too large (max is 5 MB)"
-  #   validate_mime_type_inclusion %w[application/pdf image/jpeg image/jpg]
-  # end
+  Attacher.validate do
+    validate_max_size 10*1024*1024, message: "is too large (max is 10 MB)"
+    validate_mime_type_inclusion %w[application/pdf image/jpeg image/jpg image/png]
+  end
 
   process(:store) do |io, context|
     unless io.mime_type == 'application/pdf'
