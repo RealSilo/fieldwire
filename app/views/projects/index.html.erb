@@ -1,0 +1,9 @@
+<h1>Your projects<h1>
+
+<%= link_to 'New Project', new_user_project_path, class: "btn btn-primary" %>
+
+<% @projects.each do |project| %>
+  <%= link_to user_project_path(current_user, project) do %>
+    <%= project.name %>
+  <% end %>
+<% end %>

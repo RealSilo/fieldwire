@@ -15,6 +15,12 @@ gem 'uglifier', '>= 1.3.0'
 gem 'jquery-rails'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
+
+gem 'shrine', '~> 2.6', '>= 2.6.1'
+gem 'aws-sdk', '~> 2.9', '>= 2.9.38'
+gem 'roda', '~> 2.26'
+gem 'jquery-fileupload-rails', '~> 0.4.7'
+
 gem 'devise', '~> 4.3'
 gem 'pundit', '~> 1.1'
 gem 'bootstrap-sass', '~> 3.3', '>= 3.3.7'
@@ -37,6 +43,7 @@ group :development, :test do
   gem 'shoulda-matchers', '~> 3.1', '>= 3.1.1'
   gem 'dotenv-rails', '~> 2.2', '>= 2.2.1'
   gem 'factory_girl_rails', '~> 4.8'
+  gem 'binding_of_caller'
 end
 
 group :development do
