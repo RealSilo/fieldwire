@@ -1,0 +1,8 @@
+<figure>
+  <%= link_to floorplan.image.url, target: :_blank do %>
+    <%= image_tag 'http://quantummail.co.uk/images/pdf-icon.png', :size => "200x200" %>
+  <% end %>
+  <figcaption>
+    <%= floorplan.display_name.presence || filename(floorplan) %>
+  </figcaption>
+</figure>

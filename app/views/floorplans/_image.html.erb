@@ -1,0 +1,8 @@
+<figure>
+  <%= link_to floorplan.image[:original].url, target: :_blank do %>
+    <%= image_tag floorplan.image[:medium].url %>
+  <% end %>
+  <figcaption>
+    <%= floorplan.display_name.presence || filename(floorplan) %>
+  </figcaption>
+</figure>

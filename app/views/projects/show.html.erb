@@ -5,25 +5,10 @@
 <div class="row" style="padding-top:30px;">
   <% @floorplans.each do |floorplan| %>
     <div class="col-md-4">
-      <% if (floorplan.image.respond_to?(:metadata) && floorplan.image.metadata['mime_type'] == "application/pdf") %>
-        <figure>
-          <%= link_to floorplan.image.url, target: :_blank do %>
-            <%= image_tag 'http://quantummail.co.uk/images/pdf-icon.png', :size => "200x200" %>
-          <% end %>
-          <figcaption>
-            <%= floorplan.display_name || without_extension(floorplan.image.metadata['filename']) %>
-          </figcaption>
-        </figure>
+      <% if pdf_format?(floorplan) %>
+        <%= render 'floorplans/pdf', floorplan: floorplan %>
       <% else %>
-        
-          <figure>
-            <%= link_to floorplan.image[:original].url, target: :_blank do %>
-              <%= image_tag floorplan.image[:medium].url %>
-            <% end %>
-            <figcaption>
-              <%= floorplan.display_name || without_extension(floorplan.image[:original].data['metadata']['filename']) %>
-            </figcaption>
-          </figure>
+        <%= render 'floorplans/image', floorplan: floorplan %>
       <% end %>
     </div>
   <% end %>
