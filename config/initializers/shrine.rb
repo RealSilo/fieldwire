@@ -8,11 +8,14 @@ s3_options = {
 }
 
 Shrine.storages = {
-  cache: Shrine::Storage::S3.new(prefix: "cache", **s3_options),
-  store: Shrine::Storage::S3.new(prefix: "store", **s3_options),
+  cache: Shrine::Storage::S3.new(prefix: "cache", upload_options: { acl: "public-read" }, **s3_options),
+  store: Shrine::Storage::S3.new(prefix: "store", upload_options: { acl: "public-read" }, **s3_options),
 }
 
 Shrine.plugin :activerecord
-Shrine.plugin :direct_upload
+Shrine.plugin :direct_upload, presign_options: ->(request) do
+  extension = request.params["extension"]
+  content_type = Rack::Mime.mime_type(extension)
+  { content_type: content_type }
+end
 Shrine.plugin :restore_cached_data
-Shrine.plugin :determine_mime_type
