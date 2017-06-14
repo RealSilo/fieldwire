@@ -1,6 +1,7 @@
 <h1>Fieldwire app</h1>
 
-
-<div>
-  <%= link_to "My Projects", user_projects_path(current_user), class: "btn btn-lg btn-primary" %>
-</div>
+<% if user_signed_in? %>
+  <div>
+    <%= link_to "My Projects", user_projects_path(current_user), class: "btn btn-lg btn-primary" %>
+  </div>
+<% end %>

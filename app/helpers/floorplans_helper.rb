@@ -4,7 +4,7 @@ module FloorplansHelper
   end
 
   def pdf_format?(floorplan)
-    floorplan.image.respond_to?(:metadata) && floorplan.image.metadata['mime_type'] == "application/pdf"
+    floorplan.image.respond_to?(:metadata) && floorplan.image.metadata['mime_type'] == 'application/pdf'
   end
 
   def filename(floorplan)
